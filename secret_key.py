@@ -3,4 +3,4 @@
 
 '''MAKE CERTAIN TO ADD THIS FILE TO YOUR PRIVATE GITIGNORE FILE.'''
 
-goodreads_key = ''
+secret_key = '4ylN8OWi1dhG5Yhq3PQstA'
