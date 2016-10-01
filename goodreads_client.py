@@ -18,27 +18,30 @@ class goodreads_client():
         # here we make an Element Form of our XML so we can iterate through it to get information
         dict_form = ET.fromstring(response.text)
         # This should let me iterate through and get what I want.
-
-        all_books = []
-        for best_book in dict_form.iter('best_book'):
-            # Load up blank dictionary to store book data
-            book = {'id': 0, 'title': '', 'author_info': {'auth_id': 0, 'author': ''}, 'image': ''}
-
-            '''Due to the structure of the XML parsed by the Element-tree we have to iterate this way to get our data.
-               All other methods I tried failed, and this one yields positive results.'''
-
-            for id in best_book.findall('id'):
-                book['id'] = id.text
-            for title in best_book.findall('title'):
-                book['title'] = title.text
-            for author_info in best_book.findall('author'):
-                book['author_info']['auth_id'] = author_info.find('id').text
-                book['author_info']['author'] = author_info.find('name').text
-            for image_url in best_book.findall('image_url'):
-                book['image'] = image_url.text
-            all_books.append(book)
-        return all_books
+        results = parse_best_books(dict_form)
 
 
 
 
+
+
+def parse_best_books(dict_form):
+    all_books = []
+    for best_book in dict_form.iter('best_book'):
+        # Load up blank dictionary to store book data
+        book = {'id': 0, 'title': '', 'author_info': {'auth_id': 0, 'author': ''}, 'image': ''}
+
+        '''Due to the structure of the XML parsed by the Element-tree we have to iterate this way to get our data.
+           All other methods I tried failed, and this one yields positive results.'''
+
+        for id in best_book.findall('id'):
+            book['id'] = id.text
+        for title in best_book.findall('title'):
+            book['title'] = title.text
+        for author_info in best_book.findall('author'):
+            book['author_info']['auth_id'] = author_info.find('id').text
+            book['author_info']['author'] = author_info.find('name').text
+        for image_url in best_book.findall('image_url'):
+            book['image'] = image_url.text
+        all_books.append(book)
+    return all_books
