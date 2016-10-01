@@ -15,7 +15,7 @@ class goodreads_client():
         base_url = 'https://www.goodreads.com/search/index.xml?q='+parameter+'&key='+secret_key
         # An API call MUST be use .post not .get, because that tells the server we expect something back.
         response = requests.post(base_url)
-        # TODO: Parse XML to Dictionary so it can be used.
+        # here we make an Element Form of our XML so we can iterate through it to get information
         dict_form = ET.fromstring(response.text)
         # This should let me iterate through and get what I want.
 
@@ -24,18 +24,20 @@ class goodreads_client():
             # Load up blank dictionary to store book data
             book = {'id': 0, 'title': '', 'author_info': {'auth_id': 0, 'author': ''}, 'image': ''}
             print(best_book.attrib)
-            for part in best_book.findall('id'):
+            '''Due to the structure of the XML parsed by the Element-tree we have to iterate this eway to get our data.
+               All other methods I tried failed, and this one yields positive results.'''
+            for id in best_book.findall('id'):
+                book['id'] = id.text
+            for title in best_book.findall('title'):
+                book['title'] = title.text
+            for author_info in best_book.findall('author'):
+                book['author_info']['auth_id'] = author_info.find('id').text
+                book['author_info']['author'] = author_info.find('name').text
+            for image_url in best_book.findall('image_url'):
+                book['image'] = image_url.text
+            all_books.append(book)
+        return all_books
 
-                print(part.text)
-            '''This was useful for figureing out how the tree works'''
-            # for work in result:
-            #     for piece in work:
-            #         print(piece.text)
-            #         for author in piece:
-            #             print(author.text)
-            #             print('---------------------------------------------------------')
-            #         # print(piece[8].text)
-#         TODO: Get all this data into objects somehow, 7 elements, at least that I care about
 
 
 
