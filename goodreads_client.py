@@ -23,9 +23,10 @@ class goodreads_client():
         for best_book in dict_form.iter('best_book'):
             # Load up blank dictionary to store book data
             book = {'id': 0, 'title': '', 'author_info': {'auth_id': 0, 'author': ''}, 'image': ''}
-            print(best_book.attrib)
-            '''Due to the structure of the XML parsed by the Element-tree we have to iterate this eway to get our data.
+
+            '''Due to the structure of the XML parsed by the Element-tree we have to iterate this way to get our data.
                All other methods I tried failed, and this one yields positive results.'''
+
             for id in best_book.findall('id'):
                 book['id'] = id.text
             for title in best_book.findall('title'):
