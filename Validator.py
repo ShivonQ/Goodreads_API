@@ -30,6 +30,7 @@ def get_string1_input(string):
             print("You must enter something")
             break
 
+
 def is_whole_number(number, valid_range=None):
     try:
         number_as_int = int(number)
