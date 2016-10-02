@@ -29,7 +29,6 @@ class goodreads_client():
         return results
 
 
-
 def parse_best_books(dict_form):
     all_books = []
     for best_book in dict_form.iter('best_book'):
