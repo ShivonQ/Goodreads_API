@@ -22,7 +22,7 @@ def show_menu():
 
 
 def search_book():
-    """Sub-menu for register course option."""
+    """Sub-menu for searching a book option."""
 
     menu_string = (
         '\nSearch a Book\n'
