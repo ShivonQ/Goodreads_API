@@ -16,8 +16,9 @@ class Base_Model(Model):
 
 class book_model(Base_Model):
     name = CharField(max_length=60, unique=True)
-    ISBN = CharField(max_length=1000, unique=True)
+    # ISBN = CharField(max_length=1000, unique=True)
     Author = CharField(max_length=100)
+    # TODO: Add Author ID
     Price = FloatField(null=False, default=0.0)
     Publication = CharField(max_length=100)
 
