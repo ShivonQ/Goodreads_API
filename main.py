@@ -28,6 +28,7 @@ def search_book():
         '\nSearch a Book\n'
         '\t1) By Author\n'
         '\t2) By ISBN\n'
+        # 'AN OPTION FOR SEARCHING BY TITLE'
         '\t3) Back\n'
         '\nEnter Selection'
     )
@@ -36,6 +37,11 @@ def search_book():
         if menu_choice == 1:
            try:
             author_name = get_string1_input('Enter author''s name')
+            # This one probably doesnt work right? Since the API call wants the ID for the author
+            # This should be the 'search()' function I think instead.
+            # Funny thing too, is we don't ahve to check for if they chose 1,2, or title because they
+            # all use the same functino and pass only a single variable
+            # so instead of ap.all_books_by_author(author_name) make it ap.search(parameter)
             Books = ap.all_books_by_author(author_name)
             print("The books are:")
             print(tabulate(Books, tablefmt="fancy_grid"))
