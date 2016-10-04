@@ -28,6 +28,36 @@ class goodreads_client():
         results = parse_best_books(dict_form)
         return results
 
+    def author_by_name(self, author_name):
+        base_url = 'https://www.goodreads.com/api/author_url/' + author_name + '?key=' + secret_key
+        respond = requests.get(base_url)
+
+        dict_form = ET.fromstring(respond.text)
+        print(dict_form)
+        result = parse_author(dict_form)
+        return result
+
+    def author_result_to_list(self, author_data):
+        list_form = []
+        for key, value in author_data.items():
+            list_form.append(value)
+        print(list_form)
+
+
+def parse_author(dict_form):
+    author = {'ID': 0, 'name': '', 'link': ''}
+
+    author['ID'] = dict_form[1].attrib['id']
+    author["name"] = dict_form[1][0].text
+    author['link'] = dict_form[1][1].text
+
+    return author
+
+
+
+
+
+
 
 def parse_best_books(dict_form):
     all_books = []

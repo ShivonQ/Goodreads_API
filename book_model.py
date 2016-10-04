@@ -1,10 +1,11 @@
 from peewee import *
+from database import *
+
 '''This is where the peewee model for a book will be stored'''
 
 """Make sure that this object stores the goodreads _id.  We will need it later.
     https://www.goodreads.com/search/index.xml?q=Ender&key=4ylN8OWi1dhG5Yhq3PQstA
     that will show you what types of data the server responds with."""
-
 
 db = SqliteDatabase('MyLibrary.db')
 
@@ -22,3 +23,17 @@ class book_model(Base_Model):
     Price = FloatField(null=False, default=0.0)
     Publication = CharField(max_length=100)
 
+
+class author_model(Base_Model):
+    name = CharField(max_length=70)
+    id = IntegerField(unique=True)
+    link = CharField()
+
+
+# def create_table():
+#     db.connect()
+#     db.create_table([book_model, author_model])
+#
+#
+# def handle_close():
+#     db.close()

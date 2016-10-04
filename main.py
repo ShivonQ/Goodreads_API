@@ -3,6 +3,7 @@
 from tabulate import *
 from Validator import *
 from goodreads_client import goodreads_client as ap
+from database import *
 
 
 def show_menu():
@@ -10,15 +11,26 @@ def show_menu():
     checks if user has chosen the right choice from the list
     and calls methods to complete the action"""
     menu = ('\t1) Search a book\n'
-            '\t2) Quit \n'
+            '\t2) find a author by name\n'
+            '\t3) Quit \n'
             '\nWhat do you want ??? : ')
     menu_choice = int(input(menu))
     while not is_whole_number(menu_choice, range(1, 5)):
         menu_choice = int(input("Invalid entry, please select from the list !!!"))
     if menu_choice == 1:
-            search_book()
-    elif menu_choice == 2:
-       exit(2)
+        search_book()
+    if menu_choice == 2:
+        search_for_author()
+    elif menu_choice == 3:
+
+       exit(3)
+
+def search_for_author():
+    author_name = input("find auther by name")
+    author_data = ap.author_by_name(ap,author_name)
+    #ap.author_result_to_list(ap,author_data)
+    print("ID: {}\nName: {}\nLink: {}\n".format(author_data['ID'],author_data['name'], author_data['link']))
+    insert_author_to_table(author_data)
 
 
 def search_book():
@@ -63,4 +75,5 @@ def main():
     print("Menu : ")
     show_menu()
 
+    db.create_table([book_model,author_model])
 main()
