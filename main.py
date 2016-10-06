@@ -26,7 +26,7 @@ def show_menu():
 
 def search_for_author():
     author_name = input("find auther by name")
-    author_data = ap.author_by_name(ap, author_name)
+    author_data = ap.author_by_name(author_name)
     print("ID: {}\nName: {}\nLink: {}\n".format(author_data['ID'], author_data['name'], author_data['link']))
     insert_author_to_table(author_data)
 
@@ -38,12 +38,12 @@ def search_book():
     while True:
         menu_choice = get_user_int(menu_string)
         if menu_choice == 1:
-           try:
-            author_name = get_string1_input('Enter author''s name')
-            Books = ap.search(author_name)
-            print("The books are:")
-            print(tabulate(Books, tablefmt="fancy_grid"))
-           except:
+            try:
+                author_name = get_string1_input('Enter author''s name')
+                Books = ap.search(author_name)
+                print("The books are:")
+                print(tabulate(Books, tablefmt="fancy_grid"))
+            except:
                print(" No data found !!!")
         elif menu_choice == 2:
             isbn = get_string1_input("Enter ISBN for the book")

@@ -25,7 +25,8 @@ def get_user_int(message):
 def get_string1_input(string):
     while True:
         if string:
-            return string
+            string2 = input(string)
+            return string2
         else:
             print("You must enter something")
             break

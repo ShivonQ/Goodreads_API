@@ -5,7 +5,7 @@ class menu_display:
     @staticmethod
     def main_menu():
         menu = ('\t1) Search a book\n'
-                '\t2) find a author by name\n'
+                '\t2) find an author by name\n'
                 '\t3) Quit \n'
                 '\nWhat do you want ??? : ')
         return menu
