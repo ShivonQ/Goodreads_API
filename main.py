@@ -4,16 +4,14 @@ from tabulate import *
 from Validator import *
 from goodreads_client import goodreads_client as ap
 from database import *
+from console_displays import menu_display
 
 
 def show_menu():
     """ displays the menu for the user
     checks if user has chosen the right choice from the list
     and calls methods to complete the action"""
-    menu = ('\t1) Search a book\n'
-            '\t2) find a author by name\n'
-            '\t3) Quit \n'
-            '\nWhat do you want ??? : ')
+    menu = menu_display.main_menu()
     menu_choice = int(input(menu))
     while not is_whole_number(menu_choice, range(1, 5)):
         menu_choice = int(input("Invalid entry, please select from the list !!!"))
@@ -27,34 +25,21 @@ def show_menu():
 
 def search_for_author():
     author_name = input("find auther by name")
-    author_data = ap.author_by_name(ap,author_name)
-    #ap.author_result_to_list(ap,author_data)
-    print("ID: {}\nName: {}\nLink: {}\n".format(author_data['ID'],author_data['name'], author_data['link']))
+    author_data = ap.author_by_name(ap, author_name)
+    print("ID: {}\nName: {}\nLink: {}\n".format(author_data['ID'], author_data['name'], author_data['link']))
     insert_author_to_table(author_data)
 
 
 def search_book():
     """Sub-menu for searching a book option."""
 
-    menu_string = (
-        '\nSearch a Book\n'
-        '\t1) By Author\n'
-        '\t2) By ISBN\n'
-        # 'AN OPTION FOR SEARCHING BY TITLE'
-        '\t3) Back\n'
-        '\nEnter Selection'
-    )
+    menu_string = menu_display.sub_menu()
     while True:
         menu_choice = get_user_int(menu_string)
         if menu_choice == 1:
            try:
             author_name = get_string1_input('Enter author''s name')
-            # This one probably doesnt work right? Since the API call wants the ID for the author
-            # This should be the 'search()' function I think instead.
-            # Funny thing too, is we don't ahve to check for if they chose 1,2, or title because they
-            # all use the same functino and pass only a single variable
-            # so instead of ap.all_books_by_author(author_name) make it ap.search(parameter)
-            Books = ap.all_books_by_author(author_name)
+            Books = ap.search(author_name)
             print("The books are:")
             print(tabulate(Books, tablefmt="fancy_grid"))
            except:
@@ -62,7 +47,7 @@ def search_book():
 
         elif menu_choice == 2:
             isbn = get_string1_input("Enter ISBN for the book")
-            Books = ap.all_books_by_author(isbn)
+            Books = ap.search(isbn)
             print("The books are:")
             print(tabulate(Books, tablefmt="fancy_grid"))
         elif menu_choice == 3:
@@ -74,6 +59,6 @@ def main():
     print("***************************")
     print("Menu : ")
     show_menu()
+    db.create_table([book_model, author_model])
 
-    db.create_table([book_model,author_model])
 main()

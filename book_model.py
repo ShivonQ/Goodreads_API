@@ -9,7 +9,6 @@ from database import *
 
 db = SqliteDatabase('MyLibrary.db')
 
-
 class Base_Model(Model):
     class Meta:
         database = db
@@ -19,9 +18,11 @@ class book_model(Base_Model):
     name = CharField(max_length=60, unique=True)
     # ISBN = CharField(max_length=1000, unique=True)
     Author = CharField(max_length=100)
-    # TODO: Add Author ID
+    Author_ID = CharField(max_length=100, unique=True)
     Price = FloatField(null=False, default=0.0)
     Publication = CharField(max_length=100)
+
+""" I think we don't need the author model as we are just storing the book information."""
 
 
 class author_model(Base_Model):
@@ -29,11 +30,3 @@ class author_model(Base_Model):
     id = IntegerField(unique=True)
     link = CharField()
 
-
-# def create_table():
-#     db.connect()
-#     db.create_table([book_model, author_model])
-#
-#
-# def handle_close():
-#     db.close()
