@@ -23,6 +23,7 @@ def show_menu():
 
        exit(3)
 
+
 def search_for_author():
     author_name = input("find auther by name")
     author_data = ap.author_by_name(ap, author_name)
@@ -44,13 +45,16 @@ def search_book():
             print(tabulate(Books, tablefmt="fancy_grid"))
            except:
                print(" No data found !!!")
-
         elif menu_choice == 2:
             isbn = get_string1_input("Enter ISBN for the book")
             Books = ap.search(isbn)
             print("The books are:")
             print(tabulate(Books, tablefmt="fancy_grid"))
-        elif menu_choice == 3:
+        elif menu_choice ==3:
+            title = get_string1_input("Enter the book-title")
+            Books = ap.search(title)
+            print(tabulate(Books, tablefmt="fancy_grid"))
+        elif menu_choice == 4:
             return
 
 

@@ -3,7 +3,7 @@
 
 class menu_display:
     @staticmethod
-    def main_menu(self):
+    def main_menu():
         menu = ('\t1) Search a book\n'
                 '\t2) find a author by name\n'
                 '\t3) Quit \n'
@@ -11,7 +11,7 @@ class menu_display:
         return menu
 
     @staticmethod
-    def sub_menu(self):
+    def sub_menu():
         sub_menu = (
             '\nSearch a Book\n'
             '\t1) By Author\n'
