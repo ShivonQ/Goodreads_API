@@ -34,7 +34,6 @@ class goodreads_client():
     def author_by_name(author_name):
         base_url = 'https://www.goodreads.com/api/author_url/' + author_name + '?key=' + secret_key
         respond = requests.get(base_url)
-
         dict_form = ET.fromstring(respond.text)
         print(dict_form)
         result = parse_author(dict_form)
@@ -49,10 +48,7 @@ class goodreads_client():
 
 
 def parse_author(dict_form):
-    author = {'ID': 0, 'name': '', 'link': ''}
-    author['ID'] = dict_form[1].attrib['id']
-    author["name"] = dict_form[1][0].text
-    author['link'] = dict_form[1][1].text
+    author = {'ID': dict_form[1].attrib['id'], 'name': '', 'link': dict_form[1][1].text, "name": dict_form[1][0].text}
     return author
 
 

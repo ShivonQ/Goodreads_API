@@ -9,6 +9,7 @@ from database import *
 
 db = SqliteDatabase('MyLibrary.db')
 
+
 class Base_Model(Model):
     class Meta:
         database = db
@@ -21,8 +22,6 @@ class book_model(Base_Model):
     Author_ID = CharField(max_length=100, unique=True)
     Price = FloatField(null=False, default=0.0)
     Publication = CharField(max_length=100)
-
-""" I think we don't need the author model as we are just storing the book information."""
 
 
 class author_model(Base_Model):

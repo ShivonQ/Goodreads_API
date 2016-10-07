@@ -25,7 +25,7 @@ def show_menu():
 
 
 def search_for_author():
-    author_name = input("find auther by name")
+    author_name = get_string1_input("find auther by name")
     author_data = ap.author_by_name(author_name)
     print("ID: {}\nName: {}\nLink: {}\n".format(author_data['ID'], author_data['name'], author_data['link']))
     insert_author_to_table(author_data)
@@ -58,7 +58,7 @@ def search_book():
 
 
 def main():
-    menu_display.initia_console_display()
+    menu_display.initial_console_display()
     show_menu()
     db.create_table([book_model, author_model])
 
