@@ -5,6 +5,7 @@ from Validator import *
 from goodreads_client import goodreads_client as ap
 from database import *
 from console_displays import menu_display
+from book_model import *
 
 
 def show_menu():
