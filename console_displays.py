@@ -21,3 +21,9 @@ class menu_display:
             '\nEnter Selection'
         )
         return sub_menu
+
+    @staticmethod
+    def initial_console_display():
+        print('\033[1m' + '\033[94m' + "The Program starts here !!! " + '\033[0m')
+        print("***************************")
+        print("Menu : ")

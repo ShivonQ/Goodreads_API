@@ -33,7 +33,6 @@ def search_for_author():
 
 def search_book():
     """Sub-menu for searching a book option."""
-
     menu_string = menu_display.sub_menu()
     while True:
         menu_choice = get_user_int(menu_string)
@@ -59,9 +58,7 @@ def search_book():
 
 
 def main():
-    print('\033[1m' + '\033[94m' + "The Program starts here !!! " + '\033[0m')
-    print("***************************")
-    print("Menu : ")
+    menu_display.initia_console_display()
     show_menu()
     db.create_table([book_model, author_model])
 

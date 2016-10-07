@@ -50,11 +50,9 @@ class goodreads_client():
 
 def parse_author(dict_form):
     author = {'ID': 0, 'name': '', 'link': ''}
-
     author['ID'] = dict_form[1].attrib['id']
     author["name"] = dict_form[1][0].text
     author['link'] = dict_form[1][1].text
-
     return author
 
 
