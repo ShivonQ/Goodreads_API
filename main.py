@@ -5,7 +5,7 @@ from Validator import *
 from goodreads_client import goodreads_client as ap
 from database import *
 from console_displays import menu_display
-from book_model import *
+from peewee_models import *
 
 
 def show_menu():
@@ -61,6 +61,6 @@ def search_book():
 def main():
     menu_display.initial_console_display()
     show_menu()
-    db.create_table([book_model, author_model])
+    db.create_tables([book_model, author_model], safe=True)
 
 main()

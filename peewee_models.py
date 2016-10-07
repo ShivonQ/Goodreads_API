@@ -7,7 +7,7 @@ from database import *
     https://www.goodreads.com/search/index.xml?q=Ender&key=4ylN8OWi1dhG5Yhq3PQstA
     that will show you what types of data the server responds with."""
 
-db = SqliteDatabase('MyLibrary.db')
+db = SqliteDatabase('PersonalLibrary.db')
 
 
 class Base_Model(Model):
