@@ -55,7 +55,7 @@ def parse_best_books(dict_form):
     all_books = []
     for best_book in dict_form.iter('best_book'):
         # Load up blank dictionary to store book data
-        book = {'id': 0, 'title': '', 'author_info': {'auth_id': 0, 'author': ''}}
+        book = {'id': 0, 'title': '', 'auth_id': 0, 'author_name': ''}
 
         '''Due to the structure of the XML parsed by the Element-tree we have to iterate this way to get our data.
            All other methods I tried failed, and this one yields positive results.'''
@@ -65,8 +65,8 @@ def parse_best_books(dict_form):
         for title in best_book.findall('title'):
             book['title'] = title.text
         for author_info in best_book.findall('author'):
-            book['author_info']['auth_id'] = author_info.find('id').text
-            book['author_info']['author'] = author_info.find('name').text
+            book['auth_id'] = author_info.find('id').text
+            book['author_name'] = author_info.find('name').text
         #     This part could be reinserted at a later time if image support was a thing
         # for image_url in best_book.findall('image_url'):
         #     book['image'] = image_url.text

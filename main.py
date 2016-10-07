@@ -44,24 +44,31 @@ def search_book():
                 Books = ap.search(author_name)
                 print("The books are:")
                 print(tabulate(Books, tablefmt="fancy_grid"))
-            except:
+                for book in Books:
+                    insert_books_to_table(book)
+            except Exception as e:
                print(" No data found !!!")
+               print(e)
         elif menu_choice == 2:
             isbn = get_string1_input("Enter ISBN for the book")
             Books = ap.search(isbn)
             print("The books are:")
             print(tabulate(Books, tablefmt="fancy_grid"))
-        elif menu_choice ==3:
+        elif menu_choice == 3:
             title = get_string1_input("Enter the book-title")
             Books = ap.search(title)
+            for book in Books:
+                insert_books_to_table(book)
             print(tabulate(Books, tablefmt="fancy_grid"))
         elif menu_choice == 4:
             break
 
 
 def main():
+    db.connect()
+    db.create_tables([book_model, author_model], safe=True)
     menu_display.initial_console_display()
     show_menu()
-    db.create_tables([book_model, author_model], safe=True)
+
 
 main()

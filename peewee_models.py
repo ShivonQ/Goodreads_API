@@ -1,4 +1,3 @@
-from peewee import *
 from database import *
 
 '''This is where the peewee model for a book will be stored'''
@@ -16,12 +15,10 @@ class Base_Model(Model):
 
 
 class book_model(Base_Model):
-    name = CharField(max_length=60, unique=True)
-    # ISBN = CharField(max_length=1000, unique=True)
-    Author = CharField(max_length=100)
-    Author_ID = CharField(max_length=100, unique=True)
-    Price = FloatField(null=False, default=0.0)
-    Publication = CharField(max_length=100)
+    id = CharField(max_length=60, unique=True)
+    Title = CharField(max_length=120)
+    Author_ID = CharField(max_length=100)
+    Author_Name = CharField(max_length=100)
 
 
 class author_model(Base_Model):
