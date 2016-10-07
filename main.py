@@ -12,23 +12,23 @@ def show_menu():
     """ displays the menu for the user
     checks if user has chosen the right choice from the list
     and calls methods to complete the action"""
-    menu = menu_display.main_menu()
-    menu_choice = int(input(menu))
-    while not is_whole_number(menu_choice, range(1, 5)):
-        menu_choice = int(input("Invalid entry, please select from the list !!!"))
-    if menu_choice == 1:
-        search_book()
-    if menu_choice == 2:
-        search_for_author()
-    elif menu_choice == 3:
 
-       exit(3)
+    while True:
+        menu = menu_display.main_menu()
+        menu_choice = int(input(menu))
+        while not is_whole_number(menu_choice, range(1, 4)):
+            menu_choice = int(input("Invalid entry, please select from the list !!!"))
+        if menu_choice == 1:
+            search_book()
+        if menu_choice == 2:
+            search_for_author()
+        elif menu_choice == 3:
+           exit(3)
 
 
 def search_for_author():
     author_name = get_string1_input("find auther by name")
     author_data = ap.author_by_name(author_name)
-
     print("ID: {}\nName: {}\nLink: {}\n".format(author_data['ID'], author_data['name'], author_data['link']))
     insert_author_to_table(author_data)
 
@@ -56,7 +56,7 @@ def search_book():
             Books = ap.search(title)
             print(tabulate(Books, tablefmt="fancy_grid"))
         elif menu_choice == 4:
-            return
+            break
 
 
 def main():
