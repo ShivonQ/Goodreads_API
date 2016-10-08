@@ -1,6 +1,6 @@
 """This file will run the programs main loops, show the displays and generally
    bring together the other files into a cohesive unit"""
-from tabulate import *
+from tabulate import tabulate
 from Validator import *
 from goodreads_client import goodreads_client as ap
 from database import *
@@ -40,28 +40,31 @@ def search_book():
         menu_choice = get_user_int(menu_string)
         if menu_choice == 1:
             try:
-                author_name = get_string1_input('Enter author''s name')
-                Books = ap.search(author_name)
-                print("The books are:")
-                print(tabulate(Books, tablefmt="fancy_grid"))
-                for book in Books:
-                    insert_books_to_table(book)
+                keyword = get_string1_input('Enter author''s name')
+                search_from_api(keyword)
             except Exception as e:
-               print(" No data found !!!")
-               print(e)
+                print(" HERE - Error !!!", e)
         elif menu_choice == 2:
-            isbn = get_string1_input("Enter ISBN for the book")
-            Books = ap.search(isbn)
-            print("The books are:")
-            print(tabulate(Books, tablefmt="fancy_grid"))
+            keyword = get_string1_input("Enter ISBN for the book")
+            search_from_api(keyword)
         elif menu_choice == 3:
-            title = get_string1_input("Enter the book-title")
-            Books = ap.search(title)
-            for book in Books:
-                insert_books_to_table(book)
-            print(tabulate(Books, tablefmt="fancy_grid"))
+            keyword = get_string1_input("Enter the book-title")
+            search_from_api(keyword)
         elif menu_choice == 4:
             break
+        else:
+            print("Invalid input !!!")
+
+
+def search_from_api(keyword):
+    try:
+        Books = ap.search(keyword)
+        print("The books are:")
+        print(tabulate(Books, tablefmt="fancy_grid"))
+        for book in Books:
+                insert_books_to_table(book)
+    except Exception as e:
+        print("API Error !!! ", e)
 
 
 def main():
