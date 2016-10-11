@@ -42,7 +42,7 @@ def displaySavedBooks():
         small = compile_record(book)
         big_books.append(small)
     #      print(tabulate(Books, tablefmt="fancy_grid", headers=['Author', 'Author ID', 'Title', 'Book ID']))
-    print(tabulate(big_books, tablefmt="fancy_grid",headers=["Author", "Author ID", "Title", "Book ID"]))
+    print(tabulate(big_books, tablefmt="fancy_grid", headers=["Author", "Author ID", "Title", "Book ID"]))
 
 
 def compile_record(record):

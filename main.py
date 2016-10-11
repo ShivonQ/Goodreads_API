@@ -65,7 +65,7 @@ def search_from_api(keyword):
     try:
         Books = ap.search(keyword)
         print("The books are:")
-        print(tabulate(Books, tablefmt="fancy_grid", headers=['Author', 'Author ID', 'Title', 'Book ID']))
+        print(tabulate(Books, tablefmt="fancy_grid"))
         for book in Books:
                 insert_books_to_table(book)
     except Exception as e:
