@@ -22,8 +22,10 @@ def show_menu():
             search_book()
         if menu_choice == 2:
             search_for_author()
-        elif menu_choice == 3:
-           exit(3)
+        if menu_choice ==3:
+            displaySavedBooks()
+        elif menu_choice == 4:
+           exit(4)
 
 
 def search_for_author():
@@ -40,16 +42,19 @@ def search_book():
         menu_choice = get_user_int(menu_string)
         if menu_choice == 1:
             try:
-                keyword = get_string1_input('Enter author''s name')
+                keyword = get_string1_input('Enter author\'s name')
                 search_from_api(keyword)
+                break
             except Exception as e:
                 print(" HERE - Error !!!", e)
         elif menu_choice == 2:
             keyword = get_string1_input("Enter ISBN for the book")
             search_from_api(keyword)
+            break
         elif menu_choice == 3:
             keyword = get_string1_input("Enter the book-title")
             search_from_api(keyword)
+            break
         elif menu_choice == 4:
             break
         else:
