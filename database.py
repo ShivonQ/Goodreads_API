@@ -40,6 +40,12 @@ def insert_books_to_table(books):
 #     small_list = [record.name, record.level, record.max_hp, record.strength, record.armor, record.xp_value, record.money]
 #     return small_list
 
+def displaySavedAuthor():
+    big_author = []
+    for author in author_model:
+        small = compile_authors(author)
+        big_author.append(small)
+    print(tabulate(big_author, tablefmt='fancy_grid', headers=["Author Name", "ID", "Page Link"]))
 
 def displaySavedBooks():
     big_books = []
@@ -51,5 +57,10 @@ def displaySavedBooks():
 
 
 def compile_record(record):
-    small_list = [record.Author_Name,record.Author_ID,record.Title,record.id]
+    small_list = [record.Author_Name, record.Author_ID, record.Title, record.id]
+    return small_list
+
+
+def compile_authors(author):
+    small_list = [author.name, author.id, author.link]
     return small_list

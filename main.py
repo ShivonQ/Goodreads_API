@@ -20,11 +20,13 @@ def show_menu():
             menu_choice = int(input("Invalid entry, please select from the list !!!"))
         if menu_choice == 1:
             search_book()
-        if menu_choice == 2:
+        elif menu_choice == 2:
             search_for_author()
-        if menu_choice ==3:
+        elif menu_choice == 3:
             displaySavedBooks()
         elif menu_choice == 4:
+            displaySavedAuthor()
+        elif menu_choice == 5:
            exit(4)
 
 
@@ -78,5 +80,5 @@ def main():
     menu_display.initial_console_display()
     show_menu()
 
-# THIS WAS A MINOR SHCANGE
+
 main()

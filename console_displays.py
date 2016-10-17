@@ -7,7 +7,8 @@ class menu_display:
         menu = ('\t1) Search a book\n'
                 '\t2) Find an author by name\n'
                 '\t3) Display all saved books\n'
-                '\t4) Quit \n'
+                '\t4) Display all saved Authors\n'
+                '\t5) Quit \n'
                 '\nWhat do you want ??? : \n')
         return menu
 
