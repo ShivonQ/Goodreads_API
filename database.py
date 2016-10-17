@@ -9,8 +9,13 @@ from tabulate import tabulate
 
 
 def insert_author_to_table(author_data):
-    author_new = author_model.create(name=author_data['name'], id=author_data['ID'],  link=author_data['link'])
-    author_new.save()
+    try:
+        author_new = author_model.create(name=author_data['name'], id=author_data['ID'],  link=author_data['link'])
+
+        author_new.save()
+
+    except IntegrityError:
+        print("author is in database")
 
 
 def insert_books_to_table(books):
