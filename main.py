@@ -78,5 +78,5 @@ def main():
     menu_display.initial_console_display()
     show_menu()
 
-
+# THIS WAS A MINOR SHCANGE
 main()
